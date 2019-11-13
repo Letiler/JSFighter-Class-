@@ -45,11 +45,27 @@ class Fighter {
 let Player0;
 let Player1;
 
+let gamebox;
+let headerBox;
+let graphicsBox;
+let barsBox;
+let controlisBox;
+let outputBox;
+
 function startup() {
   Player0 = new Fighter(P0NAME, P0CHARA);
   Player1 = new Fighter(P1NAME, P1CHARA);
 
-  document.getElementById('graphicsBox').innerHTML = '<img src="img/' + P0CHARA + '_idle.png" alt="'+ P0NAME +'"><img src="img/'+ P1CHARA +'_idle.png" alt="' + P1NAME + '" class="fighterIMG">'
+  gamebox.getElementById('gameBox')
+  headerBox.getElementById('headerBox')
+  graphicsBox.getElementById('graphicsBox')
+  barsBox.getElementById('barsBox')
+  controlisBox.getElementById('controlisBox')
+  outputBox.getElementById('outputBox')
+
+  document.getElementById('graphicsBox').innerHTML = '<img src="img/' + P0CHARA + '_idle.png" alt="' + P0NAME + '" class = "fighterIMG">'
+
+  document.getElementById('graphicsBox').innerHTML += '<img src="img/' + P1CHARA + '_idle.png" alt="' + P1NAME + '" class = "fighterIMG">'
 
 
   console.log("My name is " + Player0.name + " and my ATK is " + Player0.atk)
