@@ -47,11 +47,10 @@ class Fighter {
 
   //this logs who attacked who
   attack(target) {
-    let damageAmount = Math.ceil((Math.random() * this.atk));
+
     let a = koCheck(target.hp, damageAmount)
     //Variable b is just for debugging purposes
     let b = true
-    outputBox.innerHTML = this.name + ' dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
     console.log(this.name + ' attacked ' + target.name);
     if (b) {
       outputBox.innerHTML += '<br>' + ('KO') +'<br>'
@@ -64,23 +63,14 @@ class Fighter {
 
   single(target) {
     this.attack(target);
+    outputBox.innerHTML = this.name + ' dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
   }
 
   double(target) {
     this.attack(target);
+    outputBox.innerHTML = this.name + ' dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
     this.attack(target);
-    let damageAmount = Math.ceil((Math.random() * this.atk)) * 2;
-    let a = koCheck(target.hp, damageAmount)
-    //Variable b is just for debugging purposes
-    let b = true
-    outputBox.innerHTML = this.name + ' used double kick which dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
-    console.log(this.name + ' attacked ' + 'target.name + for double damage');
-    if (b) {
-      outputBox.innerHTML += '<br>' + ('KO') +'<br>'
-      console.log("KO")
-    } else {
-    outputBox.innerHTML = ("I hate my life. Please end it. Please end this eternal torment. I don't want to hurt my friend Sam anymore.")
-    }
+    outputBox.innerHTML = this.name + ' dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
   }
 
   //this logs that they recovered
