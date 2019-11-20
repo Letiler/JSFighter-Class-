@@ -46,17 +46,33 @@ class Fighter {
   }
 
   //this logs who attacked who
+
   attack(target) {
+    outputBox.innerHTML += ''
     console.log(this.name + ' attacked ' + target.name);
+    let randomDamage = Math.ceil((Math.random() * this.atk))
+    console.log(randomDamage);
+    outputBox.innerHTML += this.name + " dealt " + '<span class="damageColor">' +  randomDamage + '</span>' + " damage."
+    if (koCheck(target, randomDamage)) {
+
+    } else {
+
+    }
+  updateBars()
   }
 
   single(target) {
     this.attack(target);
+
   }
 
   double(target) {
     this.attack(target);
-    this.attack(target);
+    if (this.sp >= 5) {
+      this.sp = this.sp - 5
+      outputBox.innerHTML += '<br><span class="abilityColor"> Double Kick </span><br>'
+      this.attack(target);
+    }
   }
 
   //this logs that they recovered
@@ -70,11 +86,7 @@ function startup() {
   Player0 = new Fighter(P0NAME, P0CHARA);
   Player1 = new Fighter(P1NAME, P1CHARA);
 
-<<<<<<< HEAD
-
-=======
   //this makes a shortcut for 'document.getElementById'
->>>>>>> upstream/Release-Candidate
   gameBox = document.getElementById('gameBox');
   headerBox = document.getElementById('headerBox');
   graphicsBox = document.getElementById('graphicsBox');
@@ -100,11 +112,15 @@ function showControls() {
   if (playerTurn) {
     //show buttons for player1 and overwrites player0's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
+    controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player1.double(Player0)">Double Attack!</button><br>'
   } else {
     //show buttons for player0 and overwrites player1's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>'
+    controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player0.double(Player1)">Double Attack!</button><br>'
   }
 }
+
+
 //checks the target's HP is less than or equal to 0, Then retuns true or false.
 function koCheck(target, amount) {
   target.hp = target.hp - amount;
