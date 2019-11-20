@@ -47,7 +47,19 @@ class Fighter {
 
   //this logs who attacked who
   attack(target) {
+    let damageAmount = Math.ceil((Math.random() * this.atk));
+    let a = koCheck(target.hp, damageAmount)
+    //Variable b is just for debugging purposes
+    let b = true
+    outputBox.innerHTML = this.name + ' dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
     console.log(this.name + ' attacked ' + target.name);
+    if (b) {
+      outputBox.innerHTML += '<br>' + ('KO') +'<br>'
+      console.log("KO")
+    } else {
+    outputBox.innerHTML = ("I hate my life. Please end it. Please end this eternal torment. I don't want to hurt my friend Sam anymore.")
+    }
+    updateBars();
   }
 
   single(target) {
@@ -57,6 +69,18 @@ class Fighter {
   double(target) {
     this.attack(target);
     this.attack(target);
+    let damageAmount = Math.ceil((Math.random() * this.atk)) * 2;
+    let a = koCheck(target.hp, damageAmount)
+    //Variable b is just for debugging purposes
+    let b = true
+    outputBox.innerHTML = this.name + ' used double kick which dealt' + '<span class = "damageColor"> ' + damageAmount + '</span> damage'
+    console.log(this.name + ' attacked ' + 'target.name + for double damage');
+    if (b) {
+      outputBox.innerHTML += '<br>' + ('KO') +'<br>'
+      console.log("KO")
+    } else {
+    outputBox.innerHTML = ("I hate my life. Please end it. Please end this eternal torment. I don't want to hurt my friend Sam anymore.")
+    }
   }
 
   //this logs that they recovered
@@ -95,9 +119,12 @@ function showControls() {
   if (playerTurn) {
     //show buttons for player1 and overwrites player0's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
+    controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player1.double(Player0)">Double Attack!</button><br>'
   } else {
     //show buttons for player0 and overwrites player1's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>'
+    controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player0.double(Player1)">Double Attack!</button><br>'
+
   }
 }
 //checks the target's HP is less than or equal to 0, Then retuns true or false.
