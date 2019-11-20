@@ -48,27 +48,28 @@ class Fighter {
   //this logs who attacked who
 
   attack(target) {
-    outputBox.innerHTML += ''
     console.log(this.name + ' attacked ' + target.name);
     let randomDamage = Math.ceil((Math.random() * this.atk))
     console.log(randomDamage);
-    outputBox.innerHTML += this.name + " dealt " + '<span class="damageColor">' +  randomDamage + '</span>' + " damage."
+    outputBox.innerHTML += '<br>' + this.name + " dealt " + '<span class="damageColor">' +  randomDamage + '</span>' + " damage.<br>"
     if (koCheck(target, randomDamage)) {
 
     } else {
 
     }
+    endTurn()
   updateBars()
   }
 
   single(target) {
     this.attack(target);
 
+
   }
 
   double(target) {
     this.attack(target);
-    if (this.sp >= 5) {
+      if (this.sp >= 5) {
       this.sp = this.sp - 5
       outputBox.innerHTML += '<br><span class="abilityColor"> Double Kick </span><br>'
       this.attack(target);
@@ -136,8 +137,8 @@ function updateBars() {
   //calculates the percent of HP
   player0PercentHP = (Player0.hp / START_HP) * 100
   player1PercentHP = (Player1.hp / START_HP) * 100
-  player0PercentHP = (Player0.sp / START_SP) * 100
-  player1PercentHP = (Player1.sp / START_SP) * 100
+  player0PercentSP = (Player0.sp / START_SP) * 100
+  player1PercentSP = (Player1.sp / START_SP) * 100
 
   //Makes sure Player0's health is not greater than 100% or less than 0%
   if (player0PercentHP <= 0) {
@@ -175,21 +176,21 @@ function updateBars() {
     player1PercentSP = player1PercentSP
   }
   barsBox.innerHTML = ''
-  barsBox.innerHTML += 'P0<div class="hpBar"><div style="height:' + player0PercentHP + '%; width: 100%;" id="p0HPfill" class="HPfill"></div></div>'
-  barsBox.innerHTML += '<div class="spBar"><div style="height:' + player0PercentSP + '%; width: 100%;" id="p0SPfill" class="SPfill"></div></div>'
-  barsBox.innerHTML += 'P1<div class="hpBar"><div style="height:' + player1PercentHP + '%; width: 100%;" id="p1HPfill" class="HPfill"></div></div>'
-  barsBox.innerHTML += '<div class="spBar"><div style="height:' + player1PercentSP + '%; width: 100%;" id="p1SPfill" class="SPfill"></div></div>'
+  barsBox.innerHTML += 'P0<div class="hpBar"><div style="width:' + player0PercentHP + '%; height: 100%;" id="p0HPfill" class="HPfill"></div></div>'
+  barsBox.innerHTML += '<div class="spBar"><div style="width:' + player0PercentSP + '%; height: 100%;" id="p0SPfill" class="SPfill"></div></div>'
+  barsBox.innerHTML += 'P1<div class="hpBar"><div style="width:' + player1PercentHP + '%; height: 100%;" id="p1HPfill" class="HPfill"></div></div>'
+  barsBox.innerHTML += '<div class="spBar"><div style="width:' + player1PercentSP + '%; height: 100%;" id="p1SPfill" class="SPfill"></div></div>'
 }
 
 // EndTurn code
 function endTurn() {
   playerTurn = !playerTurn
-  if (kocheck(Player0, 0) || kocheck(Player1, 0)){
+  if (koCheck(Player0, 0) || koCheck(Player1, 0)){
     hideControls();
   }
 }
 
-function hideContols() {
+function hideControls() {
   controlsBox.innerHTML = "";
 }
 
