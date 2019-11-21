@@ -59,6 +59,7 @@ class Fighter {
     }
     endTurn()
   updateBars()
+  hitGraphics()
   }
 
   single(target) {
@@ -79,6 +80,18 @@ class Fighter {
   //this logs that they recovered
   recover() {
     console.log('Recovered!');
+    if (this.hp < START_HP) {
+      this.hp = this.hp + 2
+      outputBox.innerHTML += '<br>' + this.name + ' has recovered <span class="recoverColor">2</span> HP <br>'
+  } else {
+    if (0 == START_HP - this.hp){
+    outputBox.innerHTML += '<br> You are at full HP <br>'
+  } else{
+    this.hp = START_HP
+  }
+   }
+   endTurn()
+updateBars()
   }
 }
 
@@ -114,10 +127,12 @@ function showControls() {
     //show buttons for player1 and overwrites player0's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
     controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player1.double(Player0)">Double Attack!</button><br>'
+    controlsBox.innerHTML += '<br><button type="button" name="recover" onclick="Player1.recover(Player1)">Recover!</button><br>'
   } else {
     //show buttons for player0 and overwrites player1's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>'
     controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player0.double(Player1)">Double Attack!</button><br>'
+    controlsBox.innerHTML += '<br><button type="button" name="recover" onclick="Player0.recover(Player0)">Recover!</button><br>'
   }
 }
 
@@ -187,6 +202,8 @@ function endTurn() {
   playerTurn = !playerTurn
   if (koCheck(Player0, 0) || koCheck(Player1, 0)){
     hideControls();
+  } else {
+    showControls()
   }
 }
 
@@ -194,7 +211,15 @@ function hideControls() {
   controlsBox.innerHTML = "";
 }
 
-
+function hitGraphics() {
+  if (playerTurn) {
+    graphicsBox.innerHTML = '<img id ="' + Player0.charaName + '" src="img/' + Player0.charaName + '_attack.png" alt="' + Player0.name + '" class="fighterIMG">'
+    graphicsBox.innerHTML += '<img id ="' + Player1.charaName + '" src="img/' + Player1.charaName + '_hit.png" alt="' + Player1.name + '" class="fighterIMG">'
+  } else {
+    graphicsBox.innerHTML = '<img id ="' + Player0.charaName + '" src="img/' + Player0.charaName + '_hit.png" alt="' + Player0.name + '" class="fighterIMG">'
+    graphicsBox.innerHTML += '<img id ="' + Player1.charaName + '" src="img/' + Player1.charaName + '_attack.png" alt="' + Player1.name + '" class="fighterIMG">'
+  }
+}
 
 
 
