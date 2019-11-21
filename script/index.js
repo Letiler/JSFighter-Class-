@@ -77,6 +77,7 @@ class Fighter {
     }
   }
 
+
   //this logs that they recovered
   recover() {
     console.log('Recovered!');
@@ -128,6 +129,7 @@ function showControls() {
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
     controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player1.double(Player0)">Double Attack!</button><br>'
     controlsBox.innerHTML += '<br><button type="button" name="recover" onclick="Player1.recover(Player1)">Recover!</button><br>'
+
   } else {
     //show buttons for player0 and overwrites player1's controls
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>'
@@ -219,6 +221,13 @@ function hitGraphics() {
     graphicsBox.innerHTML = '<img id ="' + Player0.charaName + '" src="img/' + Player0.charaName + '_hit.png" alt="' + Player0.name + '" class="fighterIMG">'
     graphicsBox.innerHTML += '<img id ="' + Player1.charaName + '" src="img/' + Player1.charaName + '_attack.png" alt="' + Player1.name + '" class="fighterIMG">'
   }
+
+  }
+}
+
+function hideControls() {
+  controlsBox.innerHTML = "";
+
 }
 
 
