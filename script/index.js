@@ -46,11 +46,11 @@ class Fighter {
     let reducedDamage = Math.round(damage / 4)
     let dodge = Math.round(Math.random())
     if (dodge) {
-      outputBox.innerHTML += '<br>' + target.name + ' dodged ' + this.name + '\'s attack and was hit only hit for ' + reducedDamage + ' damage'; // outputs to the outputbox
+      outputBox.innerHTML += '<br>' + target.name + ' dodged ' + this.name + '\'s attack and was hit only hit for <span class="damageColor"> ' + reducedDamage + '</span> damage'; // outputs to the outputbox
       damage = reducedDamage
       koCheck(target, damage); //runs ko check
     } else {
-      outputBox.innerHTML += '<br>' + this.name + ' attacked ' + target.name + ' for ' + damage + ' damage!' // outputs to the outputbox
+      outputBox.innerHTML += '<br>' + this.name + ' attacked ' + target.name + ' for <span class="damageColor">' + damage + '</span> damage!' // outputs to the outputbox
       koCheck(target, damage); //runs ko check
     }
   }
@@ -80,9 +80,9 @@ class Fighter {
        let recovery = this.tek * 2;
        //heal player
        koCheck(this,-recovery);
-       outputBox.innerHTML = this.name + ' Recovered ' + recovery;
+       outputBox.innerHTML += '<br>' + this.name + ' Recovered <span class="recoverColor"> ' + recovery + '</span>';
     } else{
-      outputBox.innerHTML = "not enough SP"
+      outputBox.innerHTML += "not enough SP"
 
     }
 endTurn()
@@ -128,7 +128,6 @@ function showControls() {
     controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>';
     controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player0.double(Player1)">Double Attack!</button><br>'
     controlsBox.innerHTML += '<br><button type="button" name="attack" onclick="Player0.recover(Player1)">Recover</button><br>'
-
 
   }
 }
